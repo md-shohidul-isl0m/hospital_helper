@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Timing - MediCare Hospital</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>MediCare Hospital</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="doctor-timing.html" class="nav-link active">Doctor Timing</a></li>
+                <li><a href="prescription-upload.html" class="nav-link">Prescriptions</a></li>
+                <li><a href="chat-system.html" class="nav-link">Chat Support</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Doctor Timing & Schedules</h1>
+                <p>View doctor availability and book appointments</p>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-controls">
+                    <select id="departmentFilter" class="filter-select">
+                        <option value="">All Departments</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="general">General Medicine</option>
+                    </select>
+                    <select id="dateFilter" class="filter-select">
+                        <option value="today">Today</option>
+                        <option value="tomorrow">Tomorrow</option>
+                        <option value="week">This Week</option>
+                    </select>
+                    <button class="btn-primary" onclick="filterDoctors()">Apply Filters</button>
+                </div>
+            </div>
+
+            <!-- Doctors Grid -->
+            <div class="doctors-grid" id="doctorsGrid">
+                <!-- Doctor Card 1 -->
+                <div class="doctor-card" data-department="cardiology">
+                    <div class="doctor-info">
+                        <div class="doctor-avatar">👨‍⚕️</div>
+                        <div class="doctor-details">
+                            <h3>Dr. John Smith</h3>
+                            <p class="doctor-specialty">Cardiologist</p>
+                            <p class="doctor-experience">15 years experience</p>
+                        </div>
+                        <div class="doctor-status available">Available</div>
+                    </div>
+                    <div class="time-slots">
+                        <h4>Available Time Slots</h4>
+                        <div class="slots-grid">
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">09:00 AM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">10:30 AM</button>
+                            <button class="time-slot booked">11:00 AM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">02:00 PM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">03:30 PM</button>
+                            <button class="time-slot booked">04:00 PM</button>
+                        </div>
+                    </div>
+                    <button class="btn-primary book-appointment" onclick="bookAppointment('Dr. John Smith')">Book Appointment</button>
+                </div>
+
+                <!-- Doctor Card 2 -->
+                <div class="doctor-card" data-department="neurology">
+                    <div class="doctor-info">
+                        <div class="doctor-avatar">👩‍⚕️</div>
+                        <div class="doctor-details">
+                            <h3>Dr. Sarah Johnson</h3>
+                            <p class="doctor-specialty">Neurologist</p>
+                            <p class="doctor-experience">12 years experience</p>
+                        </div>
+                        <div class="doctor-status available">Available</div>
+                    </div>
+                    <div class="time-slots">
+                        <h4>Available Time Slots</h4>
+                        <div class="slots-grid">
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">08:30 AM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">10:00 AM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">11:30 AM</button>
+                            <button class="time-slot booked">01:00 PM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">03:00 PM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">04:30 PM</button>
+                        </div>
+                    </div>
+                    <button class="btn-primary book-appointment" onclick="bookAppointment('Dr. Sarah Johnson')">Book Appointment</button>
+                </div>
+
+                <!-- Doctor Card 3 -->
+                <div class="doctor-card" data-department="orthopedics">
+                    <div class="doctor-info">
+                        <div class="doctor-avatar">👨‍⚕️</div>
+                        <div class="doctor-details">
+                            <h3>Dr. Michael Brown</h3>
+                            <p class="doctor-specialty">Orthopedic Surgeon</p>
+                            <p class="doctor-experience">18 years experience</p>
+                        </div>
+                        <div class="doctor-status busy">Busy</div>
+                    </div>
+                    <div class="time-slots">
+                        <h4>Available Time Slots</h4>
+                        <div class="slots-grid">
+                            <button class="time-slot booked">09:00 AM</button>
+                            <button class="time-slot booked">10:30 AM</button>
+                            <button class="time-slot booked">11:00 AM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">02:00 PM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">03:30 PM</button>
+                            <button class="time-slot booked">04:00 PM</button>
+                        </div>
+                    </div>
+                    <button class="btn-primary book-appointment" onclick="bookAppointment('Dr. Michael Brown')">Book Appointment</button>
+                </div>
+
+                <!-- Doctor Card 4 -->
+                <div class="doctor-card" data-department="pediatrics">
+                    <div class="doctor-info">
+                        <div class="doctor-avatar">👩‍⚕️</div>
+                        <div class="doctor-details">
+                            <h3>Dr. Emily Davis</h3>
+                            <p class="doctor-specialty">Pediatrician</p>
+                            <p class="doctor-experience">10 years experience</p>
+                        </div>
+                        <div class="doctor-status available">Available</div>
+                    </div>
+                    <div class="time-slots">
+                        <h4>Available Time Slots</h4>
+                        <div class="slots-grid">
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">09:30 AM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">11:00 AM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">12:30 PM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">02:30 PM</button>
+                            <button class="time-slot booked">03:00 PM</button>
+                            <button class="time-slot available" onclick="selectTimeSlot(this)">04:30 PM</button>
+                        </div>
+                    </div>
+                    <button class="btn-primary book-appointment" onclick="bookAppointment('Dr. Emily Davis')">Book Appointment</button>
+                </div>
+            </div>
+
+            <!-- Booking Modal (Hidden by default) -->
+            <div id="bookingModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Book Appointment</h2>
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label for="patientName">Patient Name:</label>
+                            <input type="text" id="patientName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientPhone">Phone Number:</label>
+                            <input type="tel" id="patientPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientEmail">Email:</label>
+                            <input type="email" id="patientEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentReason">Reason for Visit:</label>
+                            <textarea id="appointmentReason" rows="3" required></textarea>
+                        </div>
+                        <div class="booking-details">
+                            <p><strong>Doctor:</strong> <span id="selectedDoctor"></span></p>
+                            <p><strong>Time Slot:</strong> <span id="selectedTime"></span></p>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                            <button type="submit" class="btn-primary">Confirm Booking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Comments for Backend Integration -->
+    <!--
+    MYSQL DATABASE INTEGRATION POINTS:
+    
+    1. Doctor Data Retrieval:
+       - Query: SELECT * FROM doctors WHERE department = ? AND available = 1
+       - File: doctor-timing.js
+       - Function: loadDoctorSchedules()
+    
+    2. Time Slot Management:
+       - Query: SELECT * FROM time_slots WHERE doctor_id = ? AND date = ? AND booked = 0
+       - File: doctor-timing.js
+       - Function: getAvailableSlots()
+    
+    3. Appointment Booking:
+       - Query: INSERT INTO appointments (patient_name, doctor_id, time_slot, date, reason)
+       - Query: UPDATE time_slots SET booked = 1 WHERE id = ?
+       - File: doctor-timing.js
+       - Function: submitBooking()
+    
+    4. Filter Functionality:
+       - Query: SELECT * FROM doctors WHERE department IN (?) AND availability_status = 'available'
+       - File: doctor-timing.js
+       - Function: filterDoctors()
+    -->
+
+    <script src="src/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Upload - MediCare Hospital</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>MediCare Hospital</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="doctor-timing.html" class="nav-link">Doctor Timing</a></li>
+                <li><a href="prescription-upload.html" class="nav-link active">Prescriptions</a></li>
+                <li><a href="chat-system.html" class="nav-link">Chat Support</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Prescription Management</h1>
+                <p>Upload, view, and manage your prescriptions and medical documents</p>
+            </div>
+
+            <div class="prescription-layout">
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <div class="upload-card">
+                        <h2>Upload New Prescription</h2>
+                        <form id="prescriptionForm" class="upload-form">
+                            <div class="form-group">
+                                <label for="prescriptionType">Prescription Type:</label>
+                                <select id="prescriptionType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="medication">Medication</option>
+                                    <option value="lab-report">Lab Report</option>
+                                    <option value="x-ray">X-Ray</option>
+                                    <option value="mri">MRI Scan</option>
+                                    <option value="ct-scan">CT Scan</option>
+                                    <option value="blood-test">Blood Test</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="doctorName">Prescribed by:</label>
+                                <input type="text" id="doctorName" placeholder="Doctor's Name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prescriptionDate">Date:</label>
+                                <input type="date" id="prescriptionDate" required>
+                            </div>
+
+                            <!-- Drag and Drop Upload Area -->
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-content">
+                                    <div class="upload-icon">📁</div>
+                                    <h3>Drag & Drop Files Here</h3>
+                                    <p>or click to browse files</p>
+                                    <p class="upload-note">Supported formats: PDF, JPG, PNG, DOCX (Max: 10MB)</p>
+                                </div>
+                                <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" hidden>
+                            </div>
+
+                            <!-- File Preview Area -->
+                            <div id="filePreview" class="file-preview hidden">
+                                <h4>Selected Files:</h4>
+                                <div id="fileList" class="file-list"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prescriptionNotes">Additional Notes:</label>
+                                <textarea id="prescriptionNotes" rows="4" placeholder="Any additional information about this prescription..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary upload-btn">
+                                <span>Upload Prescription</span>
+                                <div class="loading-spinner hidden"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Prescription History -->
+                <div class="history-section">
+                    <div class="history-card">
+                        <h2>Recent Prescriptions</h2>
+                        <div class="prescription-list" id="prescriptionList">
+                            <!-- Prescription Item 1 -->
+                            <div class="prescription-item">
+                                <div class="prescription-icon">💊</div>
+                                <div class="prescription-details">
+                                    <h4>Blood Pressure Medication</h4>
+                                    <p class="prescription-doctor">Dr. John Smith - Cardiology</p>
+                                    <p class="prescription-date">January 15, 2025</p>
+                                    <div class="prescription-tags">
+                                        <span class="tag medication">Medication</span>
+                                        <span class="tag active">Active</span>
+                                    </div>
+                                </div>
+                                <div class="prescription-actions">
+                                    <button class="btn-view" onclick="viewPrescription(1)">View</button>
+                                    <button class="btn-download" onclick="downloadPrescription(1)">Download</button>
+                                </div>
+                            </div>
+
+                            <!-- Prescription Item 2 -->
+                            <div class="prescription-item">
+                                <div class="prescription-icon">🩺</div>
+                                <div class="prescription-details">
+                                    <h4>Blood Test Results</h4>
+                                    <p class="prescription-doctor">Dr. Sarah Johnson - General Medicine</p>
+                                    <p class="prescription-date">January 10, 2025</p>
+                                    <div class="prescription-tags">
+                                        <span class="tag lab-report">Lab Report</span>
+                                        <span class="tag completed">Completed</span>
+                                    </div>
+                                </div>
+                                <div class="prescription-actions">
+                                    <button class="btn-view" onclick="viewPrescription(2)">View</button>
+                                    <button class="btn-download" onclick="downloadPrescription(2)">Download</button>
+                                </div>
+                            </div>
+
+                            <!-- Prescription Item 3 -->
+                            <div class="prescription-item">
+                                <div class="prescription-icon">🦴</div>
+                                <div class="prescription-details">
+                                    <h4>X-Ray Report - Right Arm</h4>
+                                    <p class="prescription-doctor">Dr. Michael Brown - Orthopedics</p>
+                                    <p class="prescription-date">January 5, 2025</p>
+                                    <div class="prescription-tags">
+                                        <span class="tag x-ray">X-Ray</span>
+                                        <span class="tag completed">Completed</span>
+                                    </div>
+                                </div>
+                                <div class="prescription-actions">
+                                    <button class="btn-view" onclick="viewPrescription(3)">View</button>
+                                    <button class="btn-download" onclick="downloadPrescription(3)">Download</button>
+                                </div>
+                            </div>
+
+                            <!-- Prescription Item 4 -->
+                            <div class="prescription-item">
+                                <div class="prescription-icon">🧠</div>
+                                <div class="prescription-details">
+                                    <h4>MRI Scan Report</h4>
+                                    <p class="prescription-doctor">Dr. Sarah Johnson - Neurology</p>
+                                    <p class="prescription-date">December 28, 2024</p>
+                                    <div class="prescription-tags">
+                                        <span class="tag mri">MRI</span>
+                                        <span class="tag archived">Archived</span>
+                                    </div>
+                                </div>
+                                <div class="prescription-actions">
+                                    <button class="btn-view" onclick="viewPrescription(4)">View</button>
+                                    <button class="btn-download" onclick="downloadPrescription(4)">Download</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pagination">
+                            <button class="btn-secondary">Previous</button>
+                            <span class="page-info">Page 1 of 3</span>
+                            <button class="btn-secondary">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Prescription Modal -->
+            <div id="viewModal" class="modal">
+                <div class="modal-content large">
+                    <span class="close" onclick="closeViewModal()">&times;</span>
+                    <h2>Prescription Details</h2>
+                    <div id="prescriptionViewer" class="prescription-viewer">
+                        <!-- Prescription content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Success Message -->
+            <div id="successMessage" class="success-message hidden">
+                <div class="success-content">
+                    <div class="success-icon">✅</div>
+                    <h3>Upload Successful!</h3>
+                    <p>Your prescription has been uploaded and saved securely.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Comments for Backend Integration -->
+    <!--
+    MYSQL DATABASE INTEGRATION POINTS:
+    
+    1. File Upload Storage:
+       - Query: INSERT INTO prescriptions (patient_id, file_path, file_name, file_type, doctor_name, prescription_date, notes)
+       - File: prescription-upload.js
+       - Function: uploadPrescription()
+       - Note: Store files in secure directory, save file paths in database
+    
+    2. Prescription Retrieval:
+       - Query: SELECT * FROM prescriptions WHERE patient_id = ? ORDER BY prescription_date DESC
+       - File: prescription-upload.js
+       - Function: loadPrescriptionHistory()
+    
+    3. File Download:
+       - Query: SELECT file_path FROM prescriptions WHERE id = ? AND patient_id = ?
+       - File: prescription-upload.js
+       - Function: downloadPrescription()
+       - Note: Implement secure file serving with authentication
+    
+    4. Prescription Viewing:
+       - Query: SELECT * FROM prescriptions WHERE id = ? AND patient_id = ?
+       - File: prescription-upload.js
+       - Function: viewPrescription()
+    
+    5. File Type Validation:
+       - Implement server-side validation for file types and sizes
+       - Store file metadata in database
+    
+    6. User Authentication:
+       - Ensure patient_id is retrieved from authenticated session
+       - Implement access control for prescription viewing/downloading
+    -->
+
+    <script src="src/script.js"></script>
+</body>
+</html>

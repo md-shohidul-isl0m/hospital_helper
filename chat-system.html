@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Support - MediCare Hospital</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>MediCare Hospital</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="doctor-timing.html" class="nav-link">Doctor Timing</a></li>
+                <li><a href="prescription-upload.html" class="nav-link">Prescriptions</a></li>
+                <li><a href="chat-system.html" class="nav-link active">Chat Support</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="chat-layout">
+                <!-- Chat Sidebar -->
+                <div class="chat-sidebar">
+                    <div class="chat-header">
+                        <h2>Support Channels</h2>
+                        <button class="btn-primary new-chat-btn" onclick="startNewChat()">+ New Chat</button>
+                    </div>
+
+                    <!-- Chat Categories -->
+                    <div class="chat-categories">
+                        <h3>Quick Support</h3>
+                        <div class="category-list">
+                            <div class="category-item active" onclick="selectCategory('general')">
+                                <div class="category-icon">💬</div>
+                                <span>General Support</span>
+                                <div class="unread-count">2</div>
+                            </div>
+                            <div class="category-item" onclick="selectCategory('medical')">
+                                <div class="category-icon">🏥</div>
+                                <span>Medical Consultation</span>
+                            </div>
+                            <div class="category-item" onclick="selectCategory('emergency')">
+                                <div class="category-icon">🚨</div>
+                                <span>Emergency</span>
+                            </div>
+                            <div class="category-item" onclick="selectCategory('billing')">
+                                <div class="category-icon">💳</div>
+                                <span>Billing Support</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Chats -->
+                    <div class="recent-chats">
+                        <h3>Recent Conversations</h3>
+                        <div class="chat-list">
+                            <div class="chat-item active" onclick="selectChat(1)">
+                                <div class="chat-avatar">👩‍⚕️</div>
+                                <div class="chat-info">
+                                    <h4>Dr. Sarah Wilson</h4>
+                                    <p class="chat-preview">Thank you for your question about...</p>
+                                    <span class="chat-time">2 min ago</span>
+                                </div>
+                                <div class="online-indicator"></div>
+                            </div>
+                            <div class="chat-item" onclick="selectChat(2)">
+                                <div class="chat-avatar">👨‍💼</div>
+                                <div class="chat-info">
+                                    <h4>Support Team</h4>
+                                    <p class="chat-preview">Your appointment has been confirmed...</p>
+                                    <span class="chat-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="chat-item" onclick="selectChat(3)">
+                                <div class="chat-avatar">👩‍⚕️</div>
+                                <div class="chat-info">
+                                    <h4>Dr. John Smith</h4>
+                                    <p class="chat-preview">Please follow up with the prescribed...</p>
+                                    <span class="chat-time">Yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Main Area -->
+                <div class="chat-main">
+                    <div class="chat-main-header">
+                        <div class="chat-contact-info">
+                            <div class="contact-avatar">👩‍⚕️</div>
+                            <div class="contact-details">
+                                <h3>Dr. Sarah Wilson</h3>
+                                <p class="contact-status">
+                                    <span class="status-indicator online"></span>
+                                    Online - General Medicine
+                                </p>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="action-btn" title="Voice Call">📞</button>
+                            <button class="action-btn" title="Video Call">📹</button>
+                            <button class="action-btn" title="More Options">⋯</button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- System Message -->
+                        <div class="message system">
+                            <div class="message-content">
+                                <p>You're now connected with Dr. Sarah Wilson. How can I help you today?</p>
+                            </div>
+                            <div class="message-time">Today, 10:30 AM</div>
+                        </div>
+
+                        <!-- User Message -->
+                        <div class="message sent">
+                            <div class="message-content">
+                                <p>Hello Dr. Wilson, I have some questions about my recent blood test results. Could you help me understand what they mean?</p>
+                            </div>
+                            <div class="message-time">10:35 AM</div>
+                        </div>
+
+                        <!-- Doctor Reply -->
+                        <div class="message received">
+                            <div class="message-avatar">👩‍⚕️</div>
+                            <div class="message-content">
+                                <p>Of course! I'd be happy to help you understand your blood test results. Could you please share which specific values or markers you have questions about?</p>
+                            </div>
+                            <div class="message-time">10:37 AM</div>
+                        </div>
+
+                        <!-- User Message -->
+                        <div class="message sent">
+                            <div class="message-content">
+                                <p>I'm particularly concerned about my cholesterol levels. The report shows LDL at 145 mg/dL. Is this something I should be worried about?</p>
+                            </div>
+                            <div class="message-time">10:40 AM</div>
+                        </div>
+
+                        <!-- Doctor Reply -->
+                        <div class="message received">
+                            <div class="message-avatar">👩‍⚕️</div>
+                            <div class="message-content">
+                                <p>Your LDL level of 145 mg/dL is slightly elevated. The ideal range is below 100 mg/dL for most people. However, this is manageable with some lifestyle changes and possibly medication if needed.</p>
+                                <p>I recommend:</p>
+                                <ul>
+                                    <li>Reducing saturated fat intake</li>
+                                    <li>Increasing physical activity</li>
+                                    <li>Adding more fiber to your diet</li>
+                                </ul>
+                                <p>Would you like to schedule a follow-up appointment to discuss this in more detail?</p>
+                            </div>
+                            <div class="message-time">10:45 AM</div>
+                        </div>
+
+                        <!-- Typing Indicator -->
+                        <div class="message received typing" id="typingIndicator">
+                            <div class="message-avatar">👩‍⚕️</div>
+                            <div class="message-content">
+                                <div class="typing-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="chat-input-area">
+                        <div class="chat-input-container">
+                            <button class="attachment-btn" title="Attach File">📎</button>
+                            <textarea 
+                                id="messageInput" 
+                                placeholder="Type your message..." 
+                                rows="1"
+                                onkeypress="handleKeyPress(event)"
+                                oninput="autoResize(this)"
+                            ></textarea>
+                            <button class="emoji-btn" title="Add Emoji">😊</button>
+                            <button class="send-btn" onclick="sendMessage()" title="Send Message">
+                                <span class="send-icon">➤</span>
+                            </button>
+                        </div>
+                        <div class="input-actions">
+                            <div class="quick-responses">
+                                <button class="quick-response" onclick="insertQuickResponse('Thank you for your help!')">Thank you</button>
+                                <button class="quick-response" onclick="insertQuickResponse('I need more information about this')">More info</button>
+                                <button class="quick-response" onclick="insertQuickResponse('Can we schedule a follow-up?')">Schedule follow-up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Info Panel -->
+                <div class="chat-info-panel">
+                    <div class="info-header">
+                        <h3>Chat Information</h3>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h4>Current Session</h4>
+                        <div class="info-item">
+                            <span class="info-label">Duration:</span>
+                            <span class="info-value">25 minutes</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Status:</span>
+                            <span class="info-value status-active">Active</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Priority:</span>
+                            <span class="info-value priority-normal">Normal</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h4>Doctor Information</h4>
+                        <div class="doctor-profile">
+                            <div class="profile-avatar">👩‍⚕️</div>
+                            <div class="profile-details">
+                                <h5>Dr. Sarah Wilson</h5>
+                                <p>General Medicine</p>
+                                <p class="experience">12 years experience</p>
+                                <div class="rating">
+                                    ⭐⭐⭐⭐⭐ 4.9/5
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h4>Quick Actions</h4>
+                        <div class="quick-actions">
+                            <button class="action-button" onclick="bookAppointmentFromChat()">
+                                📅 Book Appointment
+                            </button>
+                            <button class="action-button" onclick="shareDocument()">
+                                📄 Share Document
+                            </button>
+                            <button class="action-button" onclick="requestCallback()">
+                                📞 Request Callback
+                            </button>
+                            <button class="action-button" onclick="endChat()">
+                                ❌ End Chat
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h4>Chat History</h4>
+                        <div class="history-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">15</span>
+                                <span class="stat-label">Total Chats</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4.8</span>
+                                <span class="stat-label">Avg Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Comments for Backend Integration -->
+    <!--
+    MYSQL DATABASE INTEGRATION POINTS:
+    
+    1. Chat Messages Storage:
+       - Query: INSERT INTO chat_messages (chat_session_id, sender_id, sender_type, message, timestamp)
+       - File: chat-system.js
+       - Function: sendMessage()
+    
+    2. Chat Session Management:
+       - Query: INSERT INTO chat_sessions (patient_id, doctor_id, category, status, start_time)
+       - Query: UPDATE chat_sessions SET status = 'closed', end_time = NOW() WHERE session_id = ?
+       - File: chat-system.js
+       - Functions: startNewChat(), endChat()
+    
+    3. Load Chat History:
+       - Query: SELECT * FROM chat_messages WHERE chat_session_id = ? ORDER BY timestamp ASC
+       - File: chat-system.js
+       - Function: loadChatHistory()
+    
+    4. Online Status Management:
+       - Query: UPDATE doctors SET online_status = 'online', last_activity = NOW() WHERE doctor_id = ?
+       - File: chat-system.js
+       - Function: updateOnlineStatus()
+    
+    5. File Attachments:
+       - Query: INSERT INTO chat_attachments (message_id, file_path, file_name, file_type)
+       - File: chat-system.js
+       - Function: uploadAttachment()
+    
+    6. Real-time Messaging:
+       - Implement WebSocket connection for real-time message delivery
+       - Store typing indicators and read receipts
+       - Use database triggers for message notifications
+    
+    7. Chat Categories and Routing:
+       - Query: SELECT doctor_id FROM doctors WHERE specialty = ? AND online_status = 'online'
+       - File: chat-system.js
+       - Function: assignDoctorToChat()
+    -->
+
+    <script src="src/script.js"></script>
+</body>
+</html>

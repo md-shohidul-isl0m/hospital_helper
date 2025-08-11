@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Hospital - Analysis System</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>MediCare Hospital</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Dashboard</a></li>
+                <li><a href="doctor-timing.html" class="nav-link">Doctor Timing</a></li>
+                <li><a href="prescription-upload.html" class="nav-link">Prescriptions</a></li>
+                <li><a href="chat-system.html" class="nav-link">Chat Support</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Dashboard -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Welcome to MediCare Hospital Analysis System</h1>
+                    <p>Comprehensive healthcare management platform for patients and medical staff</p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <h3>150+</h3>
+                            <p>Doctors Available</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>24/7</h3>
+                            <p>Emergency Service</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>10k+</h3>
+                            <p>Patients Served</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <div class="container">
+                <h2>Quick Actions</h2>
+                <div class="actions-grid">
+                    <div class="action-card" onclick="navigateTo('doctor-timing.html')">
+                        <div class="action-icon">📅</div>
+                        <h3>Doctor Timing</h3>
+                        <p>View doctor schedules and availability</p>
+                        <button class="btn-primary">View Schedules</button>
+                    </div>
+                    <div class="action-card" onclick="navigateTo('prescription-upload.html')">
+                        <div class="action-icon">📋</div>
+                        <h3>Upload Prescription</h3>
+                        <p>Upload and manage your prescriptions</p>
+                        <button class="btn-primary">Upload Now</button>
+                    </div>
+                    <div class="action-card" onclick="navigateTo('chat-system.html')">
+                        <div class="action-icon">💬</div>
+                        <h3>Chat Support</h3>
+                        <p>Get instant help from our support team</p>
+                        <button class="btn-primary">Start Chat</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activities -->
+        <section class="recent-activities">
+            <div class="container">
+                <h2>Recent Activities</h2>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">👨‍⚕️</div>
+                        <div class="activity-content">
+                            <h4>Appointment with Dr. Smith</h4>
+                            <p>Scheduled for tomorrow at 10:00 AM</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">📄</div>
+                        <div class="activity-content">
+                            <h4>Prescription Uploaded</h4>
+                            <p>Blood test results have been uploaded</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">💊</div>
+                        <div class="activity-content">
+                            <h4>Medication Reminder</h4>
+                            <p>Take your evening medication</p>
+                            <span class="activity-time">2 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MediCare Hospital</h3>
+                    <p>Providing quality healthcare services with advanced technology and compassionate care.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>📞 +1 (555) 123-4567</p>
+                    <p>📧 info@medicare.com</p>
+                    <p>📍 123 Health St, Medical City</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Emergency</h4>
+                    <p>🚨 24/7 Emergency Line</p>
+                    <p>📞 +1 (555) 911-HELP</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MediCare Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/script.js"></script>
+</body>
+</html>
